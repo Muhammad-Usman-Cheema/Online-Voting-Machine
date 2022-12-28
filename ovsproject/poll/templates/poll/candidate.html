@@ -1,0 +1,35 @@
+{% extends "poll/base.html" %}
+{%load static%}
+
+{% block title %}Candidate{% endblock %}
+
+{% block content %}
+<div class="jumbotron" style="background-image: url('{% static 'ovs2.jpg' %}'); background-size: 100% 100%; padding-bottom: 30%">
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-danger" role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <h2>Available Candidates of {{ obj.title }}</h2>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {% for c in obj.candidate_set.all %}
+      <!-- <input type="radio" name="{{ c.position}}" value="{{c.id}}" required> <strong>{{c.name}} <a href="{% url 'detail' c.id %}">Detail</a></strong>
+     <br> -->
+     <div class="custom-control custom-radio">
+      <input type="radio" id="id_{{c.id}}" name="{{ c.position}}" value="{{c.id}}" class="custom-control-input" required>
+      <label class="custom-control-label" for="id_{{c.id}}">{{c.name}} <a href="{% url 'detail' c.id %}"style="color: White">Detail</a></label>
+    </div>
+    
+    {% empty %}
+      <p><h3>No Candidates Available</p></h3>
+    {% endfor %}
+    <br><input type="submit" class="btn btn-info" value="VOTE">
+  </form>
+  <br><p><a href="{% url 'position' %}"class="btn btn-info">Back to Poll</a></p>
+{% endblock %}
+</div>

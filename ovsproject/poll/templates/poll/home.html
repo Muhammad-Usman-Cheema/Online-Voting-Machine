@@ -1,0 +1,26 @@
+{% extends "poll/base.html" %}
+{%load static%}
+
+{% block title %}Online Voting System{% endblock %}
+
+{% block content %}
+<div class="jumbotron" style="background-image: url('{% static 'ovs2.jpg' %}'); background-size: 100% 100%; padding-bottom: 30%">
+  {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
+  {% endif %}
+  <div> 
+    <h4 style="color: White">Welcome to Online Voting System</h4>
+    <h5 style="color: White">Simple Online Voting System.</h5>
+
+    
+  </div>
+  {% comment %} <h1 style="color: Red">Welcome to Online Voting System</h1>
+  <h3 style="color: Red">Simple Online Voting System.</h3>
+  <img class="img-fluid" src="img_1.jpg" width="460" height="360"> {% endcomment %}
+</div>
+
+{% endblock %}
